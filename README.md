@@ -12,11 +12,10 @@
     <a href="https://github.com/zalando/rds-health/releases">
       <img src="https://img.shields.io/github/v/tag/zalando/rds-health?label=version" />
     </a>
-    <!-- Build Status
+    <!-- Build Status -->
     <a href="https://github.com/zalando/rds-health/actions/">
       <img src="https://github.com/zalando/rds-health/workflows/test/badge.svg" />
     </a>
-    -->
     <!-- GitHub -->
     <a href="http://github.com/zalando/rds-health">
       <img src="https://img.shields.io/github/last-commit/zalando/rds-health.svg" />
@@ -148,4 +147,4 @@ The library is [MIT](./LICENSE.md) licensed and accepts contributions via GitHub
 
 ## License
 
-[![See LICENSE](https://img.shields.io/github/license/zalando/rds-health.svg?style=for-the-badge)](LICENSE)
+[![See LICENSE](https://img.shields.io/github/license/zalando/rds-health.svg?style=for-the-badge)](./LICENSE.md)
