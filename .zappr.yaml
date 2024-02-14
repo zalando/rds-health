@@ -1,0 +1,9 @@
+approvals:
+  groups:
+    zalando:
+      minimum: 2
+      from:
+        orgs:
+          - zalando
+# one of [code, doc, config, tools, secrets]
+X-Zalando-Type: code
