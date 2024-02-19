@@ -53,8 +53,6 @@ brew install -q rds-health
 ```
 -->
 
-https://github.com/zalando/rds-health/releases
-
 Alternatively, you can install application from source code but it requires [Golang](https://go.dev/) to be installed.
 
 ```bash
