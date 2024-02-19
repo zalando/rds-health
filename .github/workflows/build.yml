@@ -1,0 +1,56 @@
+##
+## Build the main branch
+##
+name: build
+on:
+  push:
+    branches:
+      - main
+      - /refs/heads/main
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      ## actions/setup-go@v5
+      - uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491
+        with:
+          go-version: "1.21"
+
+      ## actions/checkout@v4.1.1
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+        with:
+          fetch-depth: 0
+     
+      - name: go build
+        run: |
+          go build ./...
+    
+      - name: go test
+        run: |
+          go test -v ./...
+
+      ## reecetech/version-increment@2023.10.2
+      - uses: reecetech/version-increment@71036b212bbdc100b48aae069870f10953433346
+        id: version
+        with:
+          scheme: semver
+          increment: patch
+
+      - name: tag version
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git tag ${{ steps.version.outputs.v-version }}
+          git push origin -u ${{ steps.version.outputs.v-version }}
+
+      ## goreleaser/goreleaser-action@v5
+      - uses: goreleaser/goreleaser-action@7ec5c2b0c6cdda6e8bbb49444bc797dd33d74dd8
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -9,9 +9,18 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/zalando/rds-health/cmd"
 )
 
+var (
+	// See https://goreleaser.com/cookbooks/using-main.version/
+	version = "dev"
+	commit  = "unknown"
+	date    = "unknown"
+)
+
 func main() {
-	cmd.Execute()
+	cmd.Execute(fmt.Sprintf("rds-health/%s (%s), %s", version, commit[:7], date))
 }

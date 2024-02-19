@@ -40,7 +40,16 @@ Let's get your start with `rds-health`. These few simple steps explain how to ru
 
 ### Install
 
-Easiest way to install the latest version of utility using binary release, which are available [here](https://github.com/zalando/rds-health/releases) for multiple platforms.
+Easiest way to install the latest version of utility using binary release, which are available
+either from [Homebrew](https://brew.sh/) taps or [GitHub](https://github.com/zalando/rds-health/releases) for multiple platforms.
+
+```bash
+## Install using brew
+brew tap zalando/rds-health https://github.com/zalando/rds-health
+brew install -q rds-health
+
+## use `brew upgrade` to upgrade to latest version 
+```
 
 Alternatively, you can install application from source code but it requires [Golang](https://go.dev/) to be installed.
 

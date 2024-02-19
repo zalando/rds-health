@@ -23,7 +23,9 @@ import (
 )
 
 // Execute is entry point for cobra cli application
-func Execute() {
+func Execute(vsn string) {
+	rootCmd.Version = vsn
+
 	if err := rootCmd.Execute(); err != nil {
 		e := err.Error()
 		fmt.Println(strings.ToUpper(e[:1]) + e[1:])
