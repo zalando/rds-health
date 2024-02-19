@@ -7,6 +7,8 @@ on:
     branches:
       - main
       - /refs/heads/main
+      - fix-gha-releaser
+      - /refs/heads/fix-gha-releaser
 
 jobs:
 
@@ -43,8 +45,8 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git tag ${{ steps.version.outputs.v-version }}
-          git push origin -u ${{ steps.version.outputs.v-version }}
+          git tag ${{ steps.version.outputs.v-version }}rc
+          git push origin -u ${{ steps.version.outputs.v-version }}rc
 
       ## goreleaser/goreleaser-action@v5
       - uses: goreleaser/goreleaser-action@7ec5c2b0c6cdda6e8bbb49444bc797dd33d74dd8
