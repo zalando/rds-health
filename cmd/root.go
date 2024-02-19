@@ -53,8 +53,6 @@ func init() {
 
 }
 
-var version = "v0.0.0-dev"
-
 var rootCmd = &cobra.Command{
 	Use:   "rds-health",
 	Short: "command line interface to check health of AWS RDS",
@@ -154,7 +152,6 @@ Examples:
 `,
 	Run:              root,
 	PersistentPreRun: setup,
-	Version:          version,
 }
 
 func root(cmd *cobra.Command, args []string) {

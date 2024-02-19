@@ -86,7 +86,7 @@ AZ ENGINE            VSN    INSTANCE        CPU     MEM  STORAGE TYPE   RO NAME
 1b postgres          14.7   db.t3.medium     2x   4 GiB   40 GiB gp2       my-database-2
 ...
 
-(use "rds-health check -a" to check health status of instances)
+(use "rds-health check" to check health status of instances)
 ```
 
 

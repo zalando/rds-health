@@ -60,6 +60,6 @@ func list(cmd *cobra.Command, args []string, api Service) error {
 
 func listPost(cmd *cobra.Command, args []string) {
 	if !outJsonify {
-		stderr("\n(use \"rds-health check -a\" to check health status of instances)\n")
+		stderr("\n(use \"rds-health check\" to check health status of instances)\n")
 	}
 }

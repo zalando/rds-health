@@ -17,6 +17,9 @@ builds:
       - windows
       - darwin
 
+    ignore:
+      - goarch: 386
+
 archives:
   - format: binary
 
@@ -43,4 +46,4 @@ brews:
     description: rds-health discovers anomalies, performance issues and optimization within AWS RDS.
     license: MIT
     test: |
-      system "#{bin}/rds-health -v"
+      system "#{bin}/rds-health --version"
