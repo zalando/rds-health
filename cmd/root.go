@@ -23,7 +23,9 @@ import (
 )
 
 // Execute is entry point for cobra cli application
-func Execute() {
+func Execute(vsn string) {
+	rootCmd.Version = vsn
+
 	if err := rootCmd.Execute(); err != nil {
 		e := err.Error()
 		fmt.Println(strings.ToUpper(e[:1]) + e[1:])
@@ -50,8 +52,6 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&rootInterval, "interval", "t", "24h", "time interval either in minutes (m), hours (h), days (d) or week (w)")
 
 }
-
-var version = "v0.0.0-dev"
 
 var rootCmd = &cobra.Command{
 	Use:   "rds-health",
@@ -152,7 +152,6 @@ Examples:
 `,
 	Run:              root,
 	PersistentPreRun: setup,
-	Version:          version,
 }
 
 func root(cmd *cobra.Command, args []string) {

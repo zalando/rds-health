@@ -1,0 +1,27 @@
+##
+## Check quality of source code
+##
+name: check
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+
+      ## actions/setup-go@v5
+      - uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491
+        with:
+          go-version: "1.21"
+
+      ## actions/checkout@v4.1.1
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      ## dominikh/staticcheck-action@v1.3.0
+      - uses: dominikh/staticcheck-action@ba605356b4b29a60e87ab9404b712f3461e566dc
+        with:
+          install-go: false
