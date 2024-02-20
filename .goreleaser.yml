@@ -36,14 +36,16 @@ changelog:
       - '^docs:'
       - '^test:'
 
-brews:
-  - repository:
-      owner: zalando
-      name: rds-health
-    folder: Formula
-    goarm: "7"
-    homepage:  https://github.com/zalando/rds-health
-    description: rds-health discovers anomalies, performance issues and optimization within AWS RDS.
-    license: MIT
-    test: |
-      system "#{bin}/rds-health --version"
+# Note: temporary disabled brew releases
+#
+# brews:
+#   - repository:
+#       owner: zalando
+#       name: rds-health
+#     folder: Formula
+#     goarm: "7"
+#     homepage:  https://github.com/zalando/rds-health
+#     description: rds-health discovers anomalies, performance issues and optimization within AWS RDS.
+#     license: MIT
+#     test: |
+#       system "#{bin}/rds-health --version"
