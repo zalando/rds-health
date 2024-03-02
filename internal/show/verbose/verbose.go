@@ -34,6 +34,13 @@ var (
 	//       Zones ¦ eu-central-1b
 	showConfigNode = show.FromShow[types.Node](
 		func(node types.Node) ([]byte, error) {
+			cpu := "-"
+			mem := "-"
+			if node.Compute != nil {
+				cpu = node.Compute.CPU.String()
+				mem = node.Compute.Memory.String()
+			}
+
 			ro := ""
 			if node.ReadOnly {
 				ro = " (read-only)"
@@ -43,8 +50,8 @@ var (
 			b.WriteString(fmt.Sprintf("\n%s%s\n", node.Name, ro))
 			b.WriteString(fmt.Sprintf("\t%9s ¦ %s\n", "Engine", node.Engine))
 			b.WriteString(fmt.Sprintf("\t%9s ¦ %s\n", "Instance", node.Type))
-			b.WriteString(fmt.Sprintf("\t%9s ¦ %s\n", "CPU", node.Compute.CPU))
-			b.WriteString(fmt.Sprintf("\t%9s ¦ %s\n", "Memory", node.Compute.Memory))
+			b.WriteString(fmt.Sprintf("\t%9s ¦ %s\n", "CPU", cpu))
+			b.WriteString(fmt.Sprintf("\t%9s ¦ %s\n", "Memory", mem))
 			b.WriteString(fmt.Sprintf("\t%9s ¦ %s\n", "Storage", node.Storage))
 			b.WriteString(fmt.Sprintf("\t%9s ¦ %s\n", "Zones", strings.Join(node.Zones, ", ")))
 			return b.Bytes(), nil
@@ -126,6 +133,13 @@ var (
 		func(node types.StatusNode) ([]byte, error) {
 			status := show.StatusText(node.Status)
 
+			cpu := "-"
+			mem := "-"
+			if node.Node.Compute != nil {
+				cpu = node.Node.Compute.CPU.String()
+				mem = node.Node.Compute.Memory.String()
+			}
+
 			ro := ""
 			if node.Node.ReadOnly {
 				ro = " (read-only)"
@@ -135,8 +149,8 @@ var (
 			b.WriteString(fmt.Sprintf("%s %s%s\n", status, node.Node.Name, ro))
 			b.WriteString(fmt.Sprintf("%14s ¦ %s\n", "Engine", node.Node.Engine))
 			b.WriteString(fmt.Sprintf("%14s ¦ %s\n", "Instance", node.Node.Type))
-			b.WriteString(fmt.Sprintf("%14s ¦ %s\n", "CPU", node.Node.Compute.CPU))
-			b.WriteString(fmt.Sprintf("%14s ¦ %s\n", "Memory", node.Node.Compute.Memory))
+			b.WriteString(fmt.Sprintf("%14s ¦ %s\n", "CPU", cpu))
+			b.WriteString(fmt.Sprintf("%14s ¦ %s\n", "Memory", mem))
 			b.WriteString(fmt.Sprintf("%14s ¦ %s\n", "Storage", node.Node.Storage))
 			b.WriteString(fmt.Sprintf("%14s ¦ %s\n\n", "Zones", strings.Join(node.Node.Zones, ", ")))
 			return b.Bytes(), nil
