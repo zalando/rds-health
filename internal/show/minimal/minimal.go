@@ -11,7 +11,6 @@ package minimal
 import (
 	"bytes"
 	"fmt"
-	"strconv"
 	"strings"
 
 	"github.com/lynn9388/supsub"
@@ -33,13 +32,20 @@ var (
 				zone = n.Zones[0]
 			}
 			az := zone[len(zone)-2:]
-			cpu := strconv.Itoa(n.Compute.CPU.Cores)
+
+			cpu := "-"
+			mem := "-"
+			if n.Compute != nil {
+				cpu = fmt.Sprintf("%dx", n.Compute.CPU.Cores)
+				mem = n.Compute.Memory.Size.String()
+			}
+
 			role := ""
 			if n.ReadOnly {
 				role = "ro"
 			}
 
-			text := fmt.Sprintf("%2s %-17s %-6s %-15s %2sx %7s %8s %-6s %2s %s\n", az, n.Engine.ID, n.Engine.Version, n.Type, cpu, n.Compute.Memory.Size, n.Storage.Size, n.Storage.Type, role, n.Name)
+			text := fmt.Sprintf("%2s %-17s %-6s %-15s %3s %7s %8s %-6s %2s %s\n", az, n.Engine.ID, n.Engine.Version, n.Type, cpu, mem, n.Storage.Size, n.Storage.Type, role, n.Name)
 			return []byte(text), nil
 		},
 	)
