@@ -72,6 +72,7 @@ func (in *Insight) Fetch(ctx context.Context, dbiResourceId string, dur time.Dur
 	samples := map[string]Samples{}
 	var wg sync.WaitGroup
 	var err error
+	var mu sync.Mutex
 
 	for _, chunk := range chunks {
 		chunk := chunk
@@ -81,8 +82,12 @@ func (in *Insight) Fetch(ctx context.Context, dbiResourceId string, dur time.Dur
 			defer wg.Done()
 
 			set, e := in.fetch(childContext, dbiResourceId, dur, chunk...)
+
+			mu.Lock()
+			defer mu.Unlock()
+
 			if e != nil {
-				if e != context.Canceled {
+				if err == nil {
 					cancel()
 					err = e
 				}
