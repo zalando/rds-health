@@ -10,6 +10,7 @@ package insight
 
 import (
 	"context"
+	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -65,17 +66,37 @@ func (in *Insight) Fetch(ctx context.Context, dbiResourceId string, dur time.Dur
 		chunks = append(chunks, metrics[i:end])
 	}
 
-	// TODO: concurrent
-	samples := map[string]Samples{}
-	for _, chunk := range chunks {
-		set, err := in.fetch(ctx, dbiResourceId, dur, chunk...)
-		if err != nil {
-			return nil, err
-		}
+	childContext, cancel := context.WithCancel(ctx)
+	defer cancel()
 
-		for k, v := range set {
-			samples[k] = v
-		}
+	samples := map[string]Samples{}
+	var wg sync.WaitGroup
+	var err error
+
+	for _, chunk := range chunks {
+		chunk := chunk
+		wg.Add(1)
+
+		go func() {
+			defer wg.Done()
+
+			set, e := in.fetch(childContext, dbiResourceId, dur, chunk...)
+			if e != nil {
+				if e != context.Canceled {
+					cancel()
+					err = e
+				}
+				return
+			}
+
+			for k, v := range set {
+				samples[k] = v
+			}
+		}()
+	}
+	wg.Wait()
+	if err != nil {
+		return nil, err
 	}
 
 	return samples, nil
