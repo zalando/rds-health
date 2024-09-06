@@ -12,6 +12,7 @@ approvals:
         users:
           - fogfish
           - pioneerit
+          - larry-dalmeida
 
 # mandatory pull request labels
 pull-request:
