@@ -13,6 +13,8 @@ approvals:
           - fogfish
           - pioneerit
           - larry-dalmeida
+          - tcondeixa
+          - remychantenay
 
 # mandatory pull request labels
 pull-request:

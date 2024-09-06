@@ -9,3 +9,5 @@ This document contains a list of maintainers for the `rds-health` project. If yo
 | Dmitry Kolesnikov    | [@fogfish](https://github.com/fogfish)     | Zalando Finland Oy    |
 | Oleksandr Sakharchuk | [@pioneerit](https://github.com/pioneerit) | Zalando Payments GmbH |
 | Larry D Almeida      | [@larry-dalmeida](https://github.com/larry-dalmeida) | Zalando SE |
+| Tiago Silvestre Condeixa | [@tcondeixa](https://github.com/tcondeixa) | Zalando SE |
+| Remy Chantenay | [@remychantenay](https://github.com/remychantenay) | Zalando SE |
