@@ -83,7 +83,7 @@ func (db *Database) toNode(instance rdstypes.DBInstance) types.Node {
 
 	storage := types.Storage{
 		Type: aws.ToString(instance.StorageType),
-		Size: types.BiB(instance.AllocatedStorage) * types.GiB,
+		Size: types.BiB(aws.ToInt32(instance.AllocatedStorage)) * types.GiB,
 	}
 
 	az := types.AvailabilityZones{}

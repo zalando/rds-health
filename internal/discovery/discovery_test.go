@@ -106,7 +106,7 @@ func database(name string) rdstypes.DBInstance {
 		Engine:                    aws.String("postgres"),
 		EngineVersion:             aws.String("13.14"),
 		StorageType:               aws.String("gp2"),
-		AllocatedStorage:          100,
+		AllocatedStorage:          aws.Int32(100),
 		AvailabilityZone:          aws.String("eu-central-1a"),
 		SecondaryAvailabilityZone: nil,
 	}
@@ -119,14 +119,14 @@ func cluster(name string, writer string, reader string) rdstypes.DBCluster {
 	if writer != "" {
 		members = append(members, rdstypes.DBClusterMember{
 			DBInstanceIdentifier: aws.String(writer),
-			IsClusterWriter:      true,
+			IsClusterWriter:      aws.Bool(true),
 		})
 	}
 
 	if reader != "" {
 		members = append(members, rdstypes.DBClusterMember{
 			DBInstanceIdentifier: aws.String(reader),
-			IsClusterWriter:      false,
+			IsClusterWriter:      aws.Bool(false),
 		})
 	}
 

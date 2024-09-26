@@ -21,7 +21,7 @@ jobs:
       ## actions/checkout@v4.1.1
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
 
-      ## dominikh/staticcheck-action@v1.3.0
-      - uses: dominikh/staticcheck-action@ba605356b4b29a60e87ab9404b712f3461e566dc
+      ## dominikh/staticcheck-action@v1.3.1
+      - uses: dominikh/staticcheck-action@fe1dd0c3658873b46f8c9bb3291096a617310ca6
         with:
           install-go: false

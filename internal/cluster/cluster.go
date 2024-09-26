@@ -75,7 +75,7 @@ func (api Cluster) toCluster(c rdstypes.DBCluster) types.Cluster {
 		node := types.Node{
 			Name: aws.ToString(member.DBInstanceIdentifier),
 		}
-		if member.IsClusterWriter {
+		if aws.ToBool(member.IsClusterWriter) {
 			cluster.Writer = append(cluster.Writer, node)
 		} else {
 			cluster.Reader = append(cluster.Reader, node)

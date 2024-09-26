@@ -33,11 +33,11 @@ func TestLookup(t *testing.T) {
 				DBClusterMembers: []rdstypes.DBClusterMember{
 					{
 						DBInstanceIdentifier: aws.String("test-1"),
-						IsClusterWriter:      true,
+						IsClusterWriter:      aws.Bool(true),
 					},
 					{
 						DBInstanceIdentifier: aws.String("test-2"),
-						IsClusterWriter:      false,
+						IsClusterWriter:      aws.Bool(false),
 					},
 				},
 			},
