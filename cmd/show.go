@@ -30,7 +30,7 @@ func init() {
 var showCmd = &cobra.Command{
 	Use:   "show",
 	Short: "show resource utilization",
-	Long:  "show system resource utilization of RDS instance using AWS Performance Inside",
+	Long:  "show system resource utilization of RDS instance using AWS Performance Insights",
 	Example: `
 rds-health show -n name-of-rds-instance -t 7d
 rds-health show -n name-of-rds-instance -t 7d -a max

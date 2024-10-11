@@ -101,7 +101,7 @@ func PercentileOf(seq []float64, x float64) float64 {
 	return md
 }
 
-func maybeNaN(x float64, err error) float64 { return x }
+func maybeNaN(x float64, _ error) float64 { return x }
 
 func encodeVal(x float64) any {
 	if math.IsNaN(x) {

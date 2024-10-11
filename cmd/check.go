@@ -99,7 +99,7 @@ func check(cmd *cobra.Command, args []string, api Service) error {
 	return checkNode(cmd, args, api, out)
 }
 
-func checkRegion(cmd *cobra.Command, args []string, api Service, show show.Printer[types.StatusRegion]) error {
+func checkRegion(cmd *cobra.Command, _ []string, api Service, show show.Printer[types.StatusRegion]) error {
 	status, err := api.CheckHealthRegion(cmd.Context(), checkDuration)
 	if err != nil {
 		return err
@@ -109,7 +109,7 @@ func checkRegion(cmd *cobra.Command, args []string, api Service, show show.Print
 	return stdout(show.Show(*status))
 }
 
-func checkNode(cmd *cobra.Command, args []string, api Service, show show.Printer[types.StatusNode]) error {
+func checkNode(cmd *cobra.Command, _ []string, api Service, show show.Printer[types.StatusNode]) error {
 	status, err := api.CheckHealthNode(cmd.Context(), rootDatabase, checkDuration)
 	if err != nil {
 		return err
